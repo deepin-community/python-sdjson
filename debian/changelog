@@ -1,5 +1,28 @@
-template-repository (1.0-1) unstable; urgency=medium
+python-sdjson (0.4.0-3) unstable; urgency=medium
 
-  * Initial release
+  * debian/control: changed maintainer name and added 'Build:Depends'
+  * debian/patches/001.backend-change.patch: backend already packaged
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Josenilson Ferreira da Silva <nilsonfsilva@hotmail.com>  Tue, 19 Mar 2024 22:01:56 -0300
+
+python-sdjson (0.4.0-2) unstable; urgency=medium
+
+  [Josenilson Ferreira da Silva]
+  * debian/control: added dependency for test execution
+  * debian/patches: patche is no longer necessary
+
+  [ Dmitry Shachnev ]
+  * Simplify PYBUILD_TEST_ARGS.
+  * Use timezone from standard library instead of pytz.
+  * Add tmp_pathplus fixture and re-enable more tests.
+  * Enable test_overloading.py.
+  * Update email and Last-Updated in patches.
+  * Enable the autopkgtest via pybuild.
+
+ -- Josenilson Ferreira da Silva <nilsonfsilva@hotmail.com>  Wed, 27 Dec 2023 23:34:57 -0300
+
+python-sdjson (0.4.0-1) unstable; urgency=medium
+
+  * Initial release. (Closes: #1056005)
+
+ -- Josenilson Ferreira da Silva <nilsonfsilva@hotmail.com>  Tue, 07 Nov 2023 22:06:00 -0300
