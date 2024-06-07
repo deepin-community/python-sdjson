@@ -1,4 +1,11 @@
 #!/usr/bin/make -f
+#export DH_VERBOSE = 1
+export PYBUILD_NAME=sdjson
+export PYBUILD_BEFORE_TEST=ln -s test_overloading_ tests/test_overloading
+export PYBUILD_AFTER_TEST=rm tests/test_overloading
+
+# https://github.com/domdfcoding/singledispatch-json/issues/42
+export PYBUILD_TEST_ARGS=-v --ignore=tests/test_protocols.py
 
 %:
-	dh $@
+	dh $@ --buildsystem=pybuild

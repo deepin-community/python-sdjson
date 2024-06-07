@@ -1,0 +1,43 @@
+Description: disabled import because the module 'pytz'is not packaged
+Author: Josenilson Ferreira da Silva <nilsonfsilva@hotmail.com>
+Forwarded: not-needed
+Last-Update: 2023-12-09
+Index: python-sdjson/tests/test_custom_encoders.py
+===================================================================
+--- python-sdjson.orig/tests/test_custom_encoders.py
++++ python-sdjson/tests/test_custom_encoders.py
+@@ -4,13 +4,12 @@ Create several custom encoders and test
+ 
+ # stdlib
+ import collections
+-from datetime import date, datetime, time, timedelta
++from datetime import date, datetime, time, timedelta, timezone
+ from decimal import Decimal
+ from fractions import Fraction
+ 
+ # 3rd party
+ import pytest
+-import pytz  # type: ignore[import]
+ 
+ # this package
+ import sdjson
+@@ -78,7 +77,7 @@ def test_datetime_float() -> None:
+ 	def encode_datetime_float(obj):
+ 		return obj.timestamp()
+ 
+-	assert sdjson.dumps(datetime(1945, 5, 8, 19, 20, tzinfo=pytz.UTC)) == "-777876000.0"
++	assert sdjson.dumps(datetime(1945, 5, 8, 19, 20, tzinfo=timezone.utc)) == "-777876000.0"
+ 
+ 	# Cleanup
+ 	sdjson.encoders.unregister(datetime)
+@@ -114,8 +113,8 @@ def test_timedelta_float() -> None:
+ 	def encode_timedelta_float(obj):
+ 		return obj.total_seconds()
+ 
+-	start_date = datetime(1945, 5, 8, 19, 20).replace(tzinfo=pytz.utc)
+-	end_date = datetime(2020, 5, 8, 9, 0).replace(tzinfo=pytz.utc)
++	start_date = datetime(1945, 5, 8, 19, 20).replace(tzinfo=timezone.utc)
++	end_date = datetime(2020, 5, 8, 9, 0).replace(tzinfo=timezone.utc)
+ 	delta = end_date - start_date
+ 	assert sdjson.dumps(delta) == "2366804400.0"
+ 
